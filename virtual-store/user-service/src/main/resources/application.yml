@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: user-service
+server:
+  port: 0
+
+eureka:
+  client:
+    serviceUrl:
+    defaultZone: http://localhost:8761/eureka/
+  instance:
+    preferIpAddress: true
+    instanceId: ${spring.application.name}:${random.value}
+
+axon:
+  eventhandling:
+    processors:
+      user-group:
+        mode: subscribing
+  serializer:
+    events: jackson
+    general: jackson
+    messages: jackson

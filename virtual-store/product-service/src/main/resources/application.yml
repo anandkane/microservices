@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: product-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/demo-application?currentSchema=products
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  #    hibernate:
+  #      ddl-auto: update
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:10101/realms/opussecurity
+
+server:
+  port: 0
+  error:
+    include-stacktrace: never
+    include-exception: false
+    include-binding-errors: always
+    include-message: always
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    preferIpAddress: true
+    instanceId: ${spring.application.name}:${random.value}
+
+axon:
+  eventhandling:
+    processors:
+      product-group:
+        mode: subscribing
+  serializer:
+    events: jackson
+    general: jackson
+    messages: jackson
