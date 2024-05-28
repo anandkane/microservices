@@ -29,8 +29,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.example.explore.virtualstore</groupId>
-            <artifactId>core</artifactId>
+            <groupId>org.example.explore</groupId>
+            <artifactId>virtual-store-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
