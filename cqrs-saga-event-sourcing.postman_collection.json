@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "71545d4a-ef21-4ca6-9cb4-ac17aad11d2d",
+		"name": "cqrs-saga-event-sourcing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29477597",
+		"_collection_link": "https://interstellar-moon-480486.postman.co/workspace/Team-Workspace~b8f7909d-372d-4f9c-891a-6ac01a4b62aa/collection/29477597-71545d4a-ef21-4ca6-9cb4-ac17aad11d2d?action=share&source=collection_link&creator=29477597"
+	},
+	"item": [
+		{
+			"name": "product-service",
+			"item": [
+				{
+					"name": "status",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product-list",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product-create",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Product1\",\r\n    \"price\": 100.0,\r\n    \"quantity\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product-by-product-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/f048592a-ed45-484a-a6ad-062734d9cf0c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"f048592a-ed45-484a-a6ad-062734d9cf0c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order-service",
+			"item": [
+				{
+					"name": "status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/orders/status",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": \"f048592a-ed45-484a-a6ad-062734d9cf0c\",\r\n    \"quantity\": 1,\r\n    \"addressId\": \"afbb5881-a872-4d13-993c-faeb8350eea5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access-token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJsZng3NElwTm5Id1QzYVFqcGdsWnVyZlFoRGJKd2NMVy1fOHJZdTNCb3lVIn0.eyJleHAiOjE3MTUyNjY0NTcsImlhdCI6MTcxNTI2NDk1NywiYXV0aF90aW1lIjoxNzE1MjY0OTM2LCJqdGkiOiJkMGMwNTA2My1hMjQzLTQ4YWMtOGI3YS1lMDVkM2IxNzgwNTgiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjEwMTAxL3JlYWxtcy9vcHVzc2VjdXJpdHkiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiYmQ0NTZiYzktNzc5Yi00NjMwLWE2ZjUtNGI1ZGIyZTYzYzU5IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiY3VzdG9tZXItc2VydmljZS1jbGllbnQiLCJzZXNzaW9uX3N0YXRlIjoiNTdjOGQxNzUtMzBjNi00MGMwLThiYzQtZDVmNzQ3NzQ4YzkzIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwOi8vbG9jYWxob3N0OjYwNjAiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImN1c3RvbWVyLXN1cGVyLWFkbWluIiwib2ZmbGluZV9hY2Nlc3MiLCJkZWZhdWx0LXJvbGVzLW9wdXNzZWN1cml0eSIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgZW1haWwgcHJvZmlsZSBjdXN0b21lcjpsaXN0Iiwic2lkIjoiNTdjOGQxNzUtMzBjNi00MGMwLThiYzQtZDVmNzQ3NzQ4YzkzIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsIm5hbWUiOiJBbmFuZCBLYW5lIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYW5hbmQua2FuZSIsImdpdmVuX25hbWUiOiJBbmFuZCIsImZhbWlseV9uYW1lIjoiS2FuZSIsImVtYWlsIjoic3VwZXItYWRtaW5zQGV4YW1wbGUuY29tIn0.EOw7SYnZ6DDxKm1XA-X5n2htrVvTOgWxoJ8E88wMyivpsDZdg5w-_2YNriXmYQvrhKS3PtseO3ucMLz5yxwBFzbZovvbkYbbs94tKSL3dsxAGChgtl9WjGft_y4RxhCMfZz5WE57ZS-H_CIAVaZHtLdbrs2orCrdIc1TXk6FhOKclWFtCwa4rN6y1-1GMZ-z-Bo53Q8ncBronexjXuONPBFtiBFYzdWXJDYeTbNwOe5InYPiLc6nzMgZxt6SVRv7FTbzVfOy0lc6ONBarf-4jR_hKV-Olj04q6RlrWMC_ooKZf11KFMs6IvgKQ096sv73ZDOYpfguAI3n02natID6Q"
+		}
+	]
+}
